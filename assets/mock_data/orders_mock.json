@@ -1,0 +1,229 @@
+{
+    "orders": [
+        {
+            "id": "ORD-001",
+            "customerName": "Mario Rossi",
+            "customerPhone": "+1 (555) 123-4567",
+            "customerAddress": "123 Mushroom Kingdom Ave, Apt 4B",
+            "pizzas": [
+                {
+                    "name": "Margherita",
+                    "size": "Large",
+                    "quantity": 2,
+                    "price": 15.99,
+                    "toppings": ["Mozzarella", "Tomato Sauce", "Basil"]
+                }
+            ],
+            "status": "preparing",
+            "orderTime": "2025-12-13T18:30:00Z",
+            "estimatedDeliveryTime": "2025-12-13T19:15:00Z",
+            "deliveryTime": null,
+            "totalAmount": 31.98,
+            "specialInstructions": "Extra cheese please!"
+        },
+        {
+            "id": "ORD-002",
+            "customerName": "Luigi Bianchi",
+            "customerPhone": "+1 (555) 234-5678",
+            "customerAddress": "456 Green Pipe Lane",
+            "pizzas": [
+                {
+                    "name": "Pepperoni",
+                    "size": "Medium",
+                    "quantity": 1,
+                    "price": 13.99,
+                    "toppings": ["Pepperoni", "Mozzarella", "Tomato Sauce"]
+                },
+                {
+                    "name": "Veggie Supreme",
+                    "size": "Medium",
+                    "quantity": 1,
+                    "price": 14.99,
+                    "toppings": ["Bell Peppers", "Onions", "Mushrooms", "Olives"]
+                }
+            ],
+            "status": "onTheWay",
+            "orderTime": "2025-12-13T18:00:00Z",
+            "estimatedDeliveryTime": "2025-12-13T18:45:00Z",
+            "deliveryTime": null,
+            "totalAmount": 28.98,
+            "specialInstructions": "Ring doorbell twice"
+        },
+        {
+            "id": "ORD-003",
+            "customerName": "Princess Peach",
+            "customerPhone": "+1 (555) 345-6789",
+            "customerAddress": "789 Castle Heights, Penthouse",
+            "pizzas": [
+                {
+                    "name": "Hawaiian",
+                    "size": "Large",
+                    "quantity": 1,
+                    "price": 16.99,
+                    "toppings": ["Ham", "Pineapple", "Mozzarella"]
+                }
+            ],
+            "status": "delivered",
+            "orderTime": "2025-12-13T17:15:00Z",
+            "estimatedDeliveryTime": "2025-12-13T18:00:00Z",
+            "deliveryTime": "2025-12-13T17:55:00Z",
+            "totalAmount": 16.99,
+            "specialInstructions": null
+        },
+        {
+            "id": "ORD-004",
+            "customerName": "Bowser Jr.",
+            "customerPhone": "+1 (555) 456-7890",
+            "customerAddress": "321 Lava Castle Rd",
+            "pizzas": [
+                {
+                    "name": "Meat Lovers",
+                    "size": "Extra Large",
+                    "quantity": 3,
+                    "price": 19.99,
+                    "toppings": ["Pepperoni", "Sausage", "Bacon", "Ham"]
+                }
+            ],
+            "status": "preparing",
+            "orderTime": "2025-12-13T18:45:00Z",
+            "estimatedDeliveryTime": "2025-12-13T19:30:00Z",
+            "deliveryTime": null,
+            "totalAmount": 59.97,
+            "specialInstructions": "Extra spicy! Add jalapeños"
+        },
+        {
+            "id": "ORD-005",
+            "customerName": "Yoshi",
+            "customerPhone": "+1 (555) 567-8901",
+            "customerAddress": "654 Dinosaur Park",
+            "pizzas": [
+                {
+                    "name": "Four Cheese",
+                    "size": "Medium",
+                    "quantity": 1,
+                    "price": 15.99,
+                    "toppings": ["Mozzarella", "Parmesan", "Gorgonzola", "Fontina"]
+                }
+            ],
+            "status": "onTheWay",
+            "orderTime": "2025-12-13T18:20:00Z",
+            "estimatedDeliveryTime": "2025-12-13T19:05:00Z",
+            "deliveryTime": null,
+            "totalAmount": 15.99,
+            "specialInstructions": "Leave at door"
+        },
+        {
+            "id": "ORD-006",
+            "customerName": "Toad",
+            "customerPhone": "+1 (555) 678-9012",
+            "customerAddress": "987 Mushroom House St",
+            "pizzas": [
+                {
+                    "name": "BBQ Chicken",
+                    "size": "Large",
+                    "quantity": 1,
+                    "price": 17.99,
+                    "toppings": ["BBQ Sauce", "Chicken", "Red Onions", "Cilantro"]
+                }
+            ],
+            "status": "delivered",
+            "orderTime": "2025-12-13T17:30:00Z",
+            "estimatedDeliveryTime": "2025-12-13T18:15:00Z",
+            "deliveryTime": "2025-12-13T18:10:00Z",
+            "totalAmount": 17.99,
+            "specialInstructions": "Call when outside"
+        },
+        {
+            "id": "ORD-007",
+            "customerName": "Wario",
+            "customerPhone": "+1 (555) 789-0123",
+            "customerAddress": "111 Gold Mine Blvd",
+            "pizzas": [
+                {
+                    "name": "Garlic Bread Pizza",
+                    "size": "Large",
+                    "quantity": 2,
+                    "price": 14.99,
+                    "toppings": ["Garlic Butter", "Mozzarella", "Parmesan"]
+                },
+                {
+                    "name": "Pepperoni",
+                    "size": "Large",
+                    "quantity": 1,
+                    "price": 15.99,
+                    "toppings": ["Pepperoni", "Mozzarella"]
+                }
+            ],
+            "status": "preparing",
+            "orderTime": "2025-12-13T18:50:00Z",
+            "estimatedDeliveryTime": "2025-12-13T19:35:00Z",
+            "deliveryTime": null,
+            "totalAmount": 45.97,
+            "specialInstructions": "No olives anywhere!"
+        },
+        {
+            "id": "ORD-008",
+            "customerName": "Daisy",
+            "customerPhone": "+1 (555) 890-1234",
+            "customerAddress": "222 Flower Fields Dr",
+            "pizzas": [
+                {
+                    "name": "Margherita",
+                    "size": "Small",
+                    "quantity": 1,
+                    "price": 11.99,
+                    "toppings": ["Mozzarella", "Tomato Sauce", "Basil"]
+                }
+            ],
+            "status": "delivered",
+            "orderTime": "2025-12-13T17:00:00Z",
+            "estimatedDeliveryTime": "2025-12-13T17:45:00Z",
+            "deliveryTime": "2025-12-13T17:42:00Z",
+            "totalAmount": 11.99,
+            "specialInstructions": null
+        },
+        {
+            "id": "ORD-009",
+            "customerName": "Donkey Kong",
+            "customerPhone": "+1 (555) 901-2345",
+            "customerAddress": "333 Banana Plantation",
+            "pizzas": [
+                {
+                    "name": "Meat Lovers",
+                    "size": "Extra Large",
+                    "quantity": 2,
+                    "price": 19.99,
+                    "toppings": ["Pepperoni", "Sausage", "Bacon", "Ham", "Beef"]
+                }
+            ],
+            "status": "onTheWay",
+            "orderTime": "2025-12-13T18:10:00Z",
+            "estimatedDeliveryTime": "2025-12-13T18:55:00Z",
+            "deliveryTime": null,
+            "totalAmount": 39.98,
+            "specialInstructions": "Extra large, extra hungry!"
+        },
+        {
+            "id": "ORD-010",
+            "customerName": "Rosalina",
+            "customerPhone": "+1 (555) 012-3456",
+            "customerAddress": "444 Star Observatory",
+            "pizzas": [
+                {
+                    "name": "White Pizza",
+                    "size": "Medium",
+                    "quantity": 1,
+                    "price": 16.99,
+                    "toppings": ["Ricotta", "Mozzarella", "Garlic", "Spinach"]
+                }
+            ],
+            "status": "preparing",
+            "orderTime": "2025-12-13T18:55:00Z",
+            "estimatedDeliveryTime": "2025-12-13T19:40:00Z",
+            "deliveryTime": null,
+            "totalAmount": 16.99,
+            "specialInstructions": "Gluten-free crust"
+        }
+    ]
+}
+
