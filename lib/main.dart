@@ -23,7 +23,7 @@ class PizzaPanicApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       home: const Scaffold(
         body: Center(
-          child: Text('Pizza Panic - Theme Ready! 🍕'),
+          child: Text('Ready for Orders List Screen! 🍕'),
         ),
       ),
     );
