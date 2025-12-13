@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pizza_panic/core/constants/app_colors.dart';
 import 'package:pizza_panic/core/constants/app_constants.dart';
+import 'package:pizza_panic/core/theme/theme_provider.dart';
 import 'package:pizza_panic/features/orders/domain/entities/order.dart';
 import 'package:pizza_panic/features/orders/domain/entities/order_status.dart';
 import 'package:pizza_panic/features/orders/presentation/providers/orders_providers.dart';
+import 'package:pizza_panic/features/orders/presentation/screens/order_details_screen.dart';
 import 'package:pizza_panic/features/orders/presentation/widgets/empty_orders_view.dart';
 import 'package:pizza_panic/features/orders/presentation/widgets/order_card.dart';
 import 'package:pizza_panic/shared/widgets/error_view.dart';
@@ -57,22 +60,29 @@ class OrdersListScreen extends ConsumerWidget {
         ],
       ),
       actions: [
-        // Order count badge
-        ordersAsync.whenData((orders) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: Center(
-                  child: Chip(
-                    label: Text(
-                      '${orders.length} Orders',
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                    padding: EdgeInsets.zero,
+        // Theme mode switch
+        Consumer(
+          builder: (context, ref, child) {
+            final themeMode = ref.watch(themeModeProvider);
+            final isDarkMode = themeMode == ThemeMode.dark;
+
+            return Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Switch(
+                    value: isDarkMode,
+                    onChanged: (value) {
+                      ref.read(themeModeProvider.notifier).toggleTheme();
+                    },
+                    activeColor: Theme.of(context).colorScheme.primary,
                   ),
-                ),
-              );
-            }).value ??
-            const SizedBox.shrink(),
+                ],
+              ),
+            );
+          },
+        ),
       ],
     );
   }
@@ -83,7 +93,7 @@ class OrdersListScreen extends ConsumerWidget {
     Map<OrderStatus, List<Order>> ordersByStatus,
   ) {
     return ListView(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
       children: [
         // Preparing section
         _renderStatusSection(
@@ -93,7 +103,7 @@ class OrdersListScreen extends ConsumerWidget {
           ordersByStatus[OrderStatus.preparing] ?? [],
         ),
 
-        const SizedBox(height: 16),
+        const SizedBox(height: AppSpacing.md),
 
         // On the Way section
         _renderStatusSection(
@@ -103,7 +113,7 @@ class OrdersListScreen extends ConsumerWidget {
           ordersByStatus[OrderStatus.onTheWay] ?? [],
         ),
 
-        const SizedBox(height: 16),
+        const SizedBox(height: AppSpacing.md),
 
         // Delivered section
         _renderStatusSection(
@@ -131,7 +141,7 @@ class OrdersListScreen extends ConsumerWidget {
       children: [
         // Section header
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
           child: Row(
             children: [
               Text(
@@ -140,37 +150,37 @@ class OrdersListScreen extends ConsumerWidget {
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: AppSpacing.sm),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.sm,
+                  vertical: AppSpacing.xs,
+                ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: AppRadius.radiusMd,
                 ),
                 child: Text(
                   '${orders.length}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  ),
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.md),
 
         // Order cards
         ...orders.map((order) {
           return OrderCard(
             order: order,
             onTap: () {
-              // TODO: Navigate to order details (Branch 8)
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Order details coming soon: ${order.id}'),
-                  duration: const Duration(seconds: 1),
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => OrderDetailsScreen(orderId: order.id),
                 ),
               );
             },

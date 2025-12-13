@@ -7,35 +7,109 @@ import 'package:pizza_panic/features/orders/presentation/widgets/order_status_ch
 /// Order card widget
 /// Displays order summary in a card
 class OrderCard extends StatelessWidget {
-  final Order order;
-  final VoidCallback onTap;
-
   const OrderCard({
     super.key,
     required this.order,
     required this.onTap,
   });
 
+  final Order order;
+  final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.sm,
+      ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: AppRadius.radiusMd,
         child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _renderHeader(context),
-              const SizedBox(height: 12),
-              _renderOrderInfo(context),
-              const SizedBox(height: 12),
-              _renderFooter(context),
+              // Pizza image
+              _renderPizzaImage(context),
+              const SizedBox(width: AppSpacing.md),
+              // Order details
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _renderHeader(context),
+                    const SizedBox(height: AppSpacing.md),
+                    _renderOrderInfo(context),
+                    const SizedBox(height: AppSpacing.md),
+                    _renderFooter(context),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _renderPizzaImage(BuildContext context) {
+    // Show placeholder if no pizzas or no image URL
+    if (order.pizzas.isEmpty || order.pizzas.first.imageUrl == null) {
+      return Container(
+        width: 80,
+        height: 80,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+          borderRadius: AppRadius.radiusMd,
+        ),
+        child: const Icon(
+          Icons.local_pizza,
+          color: AppColors.primaryColor,
+          size: 40,
+        ),
+      );
+    }
+
+    final imageUrl = order.pizzas.first.imageUrl!;
+
+    return ClipRRect(
+      borderRadius: AppRadius.radiusMd,
+      child: Image.network(
+        imageUrl,
+        width: 80,
+        height: 80,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              borderRadius: AppRadius.radiusMd,
+            ),
+            child: const Icon(
+              Icons.local_pizza,
+              color: AppColors.primaryColor,
+              size: 40,
+            ),
+          );
+        },
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              borderRadius: AppRadius.radiusMd,
+            ),
+            child: const Center(
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+          );
+        },
       ),
     );
   }
@@ -58,34 +132,37 @@ class OrderCard extends StatelessWidget {
   }
 
   Widget _renderOrderInfo(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Customer name
         Row(
           children: [
-            const Icon(Icons.person, size: 16, color: Colors.grey),
-            const SizedBox(width: 8),
+            Icon(Icons.person, color: colorScheme.onSurfaceVariant),
+            const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Text(
                 order.customerName,
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: textTheme.bodyLarge,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AppSpacing.sm),
         // Pizzas
         Row(
           children: [
-            const Icon(Icons.local_pizza, size: 16, color: Colors.grey),
-            const SizedBox(width: 8),
+            Icon(Icons.local_pizza, color: colorScheme.onSurfaceVariant),
+            const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Text(
                 order.pizzaNamesDisplay,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey[600],
-                    ),
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -98,26 +175,28 @@ class OrderCard extends StatelessWidget {
 
   Widget _renderFooter(BuildContext context) {
     final orderTime = DateFormat('hh:mm a').format(order.orderTime);
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Row(
       children: [
         // Order time
-        Icon(Icons.access_time, size: 14, color: Colors.grey[600]),
-        const SizedBox(width: 4),
+        Icon(Icons.access_time, color: colorScheme.onSurfaceVariant),
+        const SizedBox(width: AppSpacing.xs),
         Text(
           orderTime,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.grey[600],
-              ),
+          style: textTheme.bodySmall?.copyWith(
+            color: colorScheme.onSurfaceVariant,
+          ),
         ),
         const Spacer(),
         // Total amount
         Text(
           order.formattedTotal,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColors.primaryColor,
-              ),
+          style: textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryColor,
+          ),
         ),
       ],
     );

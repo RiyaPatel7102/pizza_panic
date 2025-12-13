@@ -5,24 +5,27 @@ import 'package:pizza_panic/features/orders/domain/entities/order_status.dart';
 /// Status chip widget
 /// Displays order status with appropriate color
 class OrderStatusChip extends StatelessWidget {
-  final OrderStatus status;
-  final bool showIcon;
-
   const OrderStatusChip({
     super.key,
     required this.status,
     this.showIcon = true,
   });
 
+  final OrderStatus status;
+  final bool showIcon;
+
   @override
   Widget build(BuildContext context) {
     final color = _getStatusColor(status);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.xs,
+      ),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: AppRadius.radiusXl,
         border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Row(
@@ -30,15 +33,14 @@ class OrderStatusChip extends StatelessWidget {
         children: [
           if (showIcon) ...[
             Icon(_getStatusIcon(status), size: 14, color: color),
-            const SizedBox(width: 4),
+            const SizedBox(width: AppSpacing.xs),
           ],
           Text(
             status.displayName.substring(2), // Remove emoji
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: color,
-            ),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: color,
+                ),
           ),
         ],
       ),

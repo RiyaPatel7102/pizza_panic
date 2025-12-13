@@ -11,7 +11,8 @@
                     "size": "Large",
                     "quantity": 2,
                     "price": 15.99,
-                    "toppings": ["Mozzarella", "Tomato Sauce", "Basil"]
+                    "toppings": ["Mozzarella", "Tomato Sauce", "Basil"],
+                    "imageUrl": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400"
                 }
             ],
             "status": "preparing",
@@ -32,14 +33,16 @@
                     "size": "Medium",
                     "quantity": 1,
                     "price": 13.99,
-                    "toppings": ["Pepperoni", "Mozzarella", "Tomato Sauce"]
+                    "toppings": ["Pepperoni", "Mozzarella", "Tomato Sauce"],
+                    "imageUrl": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400"
                 },
                 {
                     "name": "Veggie Supreme",
                     "size": "Medium",
                     "quantity": 1,
                     "price": 14.99,
-                    "toppings": ["Bell Peppers", "Onions", "Mushrooms", "Olives"]
+                    "toppings": ["Bell Peppers", "Onions", "Mushrooms", "Olives"],
+                    "imageUrl": "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400"
                 }
             ],
             "status": "onTheWay",
@@ -60,7 +63,8 @@
                     "size": "Large",
                     "quantity": 1,
                     "price": 16.99,
-                    "toppings": ["Ham", "Pineapple", "Mozzarella"]
+                    "toppings": ["Ham", "Pineapple", "Mozzarella"],
+                    "imageUrl": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"
                 }
             ],
             "status": "delivered",
@@ -81,7 +85,8 @@
                     "size": "Extra Large",
                     "quantity": 3,
                     "price": 19.99,
-                    "toppings": ["Pepperoni", "Sausage", "Bacon", "Ham"]
+                    "toppings": ["Pepperoni", "Sausage", "Bacon", "Ham"],
+                    "imageUrl": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400"
                 }
             ],
             "status": "preparing",
@@ -102,7 +107,8 @@
                     "size": "Medium",
                     "quantity": 1,
                     "price": 15.99,
-                    "toppings": ["Mozzarella", "Parmesan", "Gorgonzola", "Fontina"]
+                    "toppings": ["Mozzarella", "Parmesan", "Gorgonzola", "Fontina"],
+                    "imageUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"
                 }
             ],
             "status": "onTheWay",
@@ -123,7 +129,8 @@
                     "size": "Large",
                     "quantity": 1,
                     "price": 17.99,
-                    "toppings": ["BBQ Sauce", "Chicken", "Red Onions", "Cilantro"]
+                    "toppings": ["BBQ Sauce", "Chicken", "Red Onions", "Cilantro"],
+                    "imageUrl": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"
                 }
             ],
             "status": "delivered",
@@ -144,14 +151,16 @@
                     "size": "Large",
                     "quantity": 2,
                     "price": 14.99,
-                    "toppings": ["Garlic Butter", "Mozzarella", "Parmesan"]
+                    "toppings": ["Garlic Butter", "Mozzarella", "Parmesan"],
+                    "imageUrl": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400"
                 },
                 {
                     "name": "Pepperoni",
                     "size": "Large",
                     "quantity": 1,
                     "price": 15.99,
-                    "toppings": ["Pepperoni", "Mozzarella"]
+                    "toppings": ["Pepperoni", "Mozzarella"],
+                    "imageUrl": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400"
                 }
             ],
             "status": "preparing",
@@ -172,7 +181,8 @@
                     "size": "Small",
                     "quantity": 1,
                     "price": 11.99,
-                    "toppings": ["Mozzarella", "Tomato Sauce", "Basil"]
+                    "toppings": ["Mozzarella", "Tomato Sauce", "Basil"],
+                    "imageUrl": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400"
                 }
             ],
             "status": "delivered",
@@ -193,7 +203,8 @@
                     "size": "Extra Large",
                     "quantity": 2,
                     "price": 19.99,
-                    "toppings": ["Pepperoni", "Sausage", "Bacon", "Ham", "Beef"]
+                    "toppings": ["Pepperoni", "Sausage", "Bacon", "Ham", "Beef"],
+                    "imageUrl": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400"
                 }
             ],
             "status": "onTheWay",
@@ -214,7 +225,8 @@
                     "size": "Medium",
                     "quantity": 1,
                     "price": 16.99,
-                    "toppings": ["Ricotta", "Mozzarella", "Garlic", "Spinach"]
+                    "toppings": ["Ricotta", "Mozzarella", "Garlic", "Spinach"],
+                    "imageUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"
                 }
             ],
             "status": "preparing",

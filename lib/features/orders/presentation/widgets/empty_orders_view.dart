@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizza_panic/core/constants/app_colors.dart';
 
 /// Empty state widget
 /// Shown when there are no orders
@@ -12,6 +13,9 @@ class EmptyOrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -19,21 +23,21 @@ class EmptyOrdersView extends StatelessWidget {
           Icon(
             Icons.inbox_outlined,
             size: 80,
-            color: Colors.grey[400],
+            color: colorScheme.onSurfaceVariant,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppSpacing.md),
           Text(
             message,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Colors.grey[600],
-                ),
+            style: textTheme.titleLarge?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.sm),
           Text(
             'Orders will appear here',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey[500],
-                ),
+            style: textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
           ),
         ],
       ),

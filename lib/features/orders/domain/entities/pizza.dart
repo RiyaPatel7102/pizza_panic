@@ -9,6 +9,7 @@ class Pizza {
     required this.quantity,
     required this.price,
     required this.toppings,
+    this.imageUrl,
   });
 
   final String name;
@@ -16,6 +17,7 @@ class Pizza {
   final int quantity;
   final double price;
   final List<String> toppings;
+  final String? imageUrl;
 
   /// Calculate total price for this pizza (price * quantity)
   double get totalPrice => price * quantity;
@@ -39,6 +41,7 @@ class Pizza {
     int? quantity,
     double? price,
     List<String>? toppings,
+    String? imageUrl,
   }) {
     return Pizza(
       name: name ?? this.name,
@@ -46,6 +49,7 @@ class Pizza {
       quantity: quantity ?? this.quantity,
       price: price ?? this.price,
       toppings: toppings ?? this.toppings,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 
@@ -58,6 +62,7 @@ class Pizza {
         other.size == size &&
         other.quantity == quantity &&
         other.price == price &&
+        other.imageUrl == imageUrl &&
         _listEquals(other.toppings, toppings);
   }
 
@@ -67,6 +72,7 @@ class Pizza {
         size.hashCode ^
         quantity.hashCode ^
         price.hashCode ^
+        imageUrl.hashCode ^
         toppings.hashCode;
   }
 
