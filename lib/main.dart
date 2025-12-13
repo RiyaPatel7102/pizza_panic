@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pizza_panic/core/constants/app_constants.dart';
+import 'package:pizza_panic/core/theme/app_theme.dart';
 
 void main() {
   runApp(
@@ -15,17 +17,13 @@ class PizzaPanicApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pizza Panic',
+      title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFFF6B35),
-        ),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const Scaffold(
         body: Center(
-          child: Text('Pizza Panic - Setup Complete! 🍕'),
+          child: Text('Pizza Panic - Theme Ready! 🍕'),
         ),
       ),
     );
