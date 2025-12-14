@@ -509,22 +509,3 @@ _"Making pizza delivery chaos a thing of the past, one order at a time!"_
 
 ---
 
-## 📸 Screenshots
-
-### Light Mode
-
--   **Orders List (Tabbed)**: Three tabs with color-coded indicators
--   **Order Card**: Hero image at top, Order ID title, info badges
--   **Order Details**: Full-screen hero image, delivery stepper, update button
-
-### Dark Mode
-
--   **Theme Toggle**: Seamless switch between light and dark
--   **Consistent Design**: All components adapt automatically
--   **Status Colors**: Maintain visibility in both modes
-
-### Empty States
-
--   **No Orders**: Friendly empty state with guidance
--   **Per-Tab Empty**: Custom messages per status
--   **Pull-to-Refresh**: Works on empty states too
