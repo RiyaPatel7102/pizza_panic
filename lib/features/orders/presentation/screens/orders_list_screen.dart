@@ -49,6 +49,7 @@ class OrdersListScreen extends ConsumerWidget {
 
   AppBar _renderAppBar(BuildContext context, AsyncValue<dynamic> ordersAsync) {
     return AppBar(
+      centerTitle: false,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
