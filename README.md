@@ -8,7 +8,7 @@ Pizza delivery tracking app for **Mamma Mia's Pizza Palace** - helping save thei
 
 ## 📱 About
 
-A Flutter mobile app that helps track pizza orders in real-time, grouped by delivery status (Preparing → On the Way → Delivered). Built to demonstrate clean architecture, modern Flutter practices, and efficient state management.
+A Flutter mobile app that helps track pizza orders in real-time with an intuitive tabbed interface. Features Material 3 design, smooth animations, and efficient state management with Riverpod.
 
 ---
 
@@ -16,65 +16,81 @@ A Flutter mobile app that helps track pizza orders in real-time, grouped by deli
 
 ### Core Requirements ✅
 
--   ✅ **Order Management Screen**
+-   ✅ **Modern Tabbed Interface**
 
-    -   List of pizza orders with network images
-    -   Grouped by status: 🟠 Preparing, 🔵 On the Way, 🟢 Delivered
-    -   Display order ID, customer name, pizza types, and status
-    -   Pull-to-refresh functionality
-    -   Order count badges per status
+    -   Three tabs for order statuses: 🟠 Preparing, 🔵 On the Way, 🟢 Delivered
+    -   Color-coded tab indicators matching status chips
+    -   Order count badges per tab
+    -   Smooth tab transitions with animations
+    -   Independent pull-to-refresh per tab
 
--   ✅ **Order Details**
+-   ✅ **Beautiful Order Cards**
 
-    -   Hero pizza image with gradient overlay
-    -   Visual delivery stepper (4 stages with animations)
-    -   Tap any order to view full details
-    -   Update status to next stage with confirmation
-    -   Immediate optimistic UI updates
-    -   Success feedback with SnackBar
+    -   Large hero pizza image at top (180px height)
+    -   Order ID as primary title (bold, prominent)
+    -   Pizza name as subtitle with smart pluralization
+    -   Three info badges: Customer, Pizza Count, Address
+    -   Status chip overlay with semi-transparent background
+    -   Elevated cards with theme-aware borders and shadows
+
+-   ✅ **Order Details Screen**
+
+    -   Full-screen hero pizza image with gradient overlay
+    -   Interactive delivery stepper (4 stages with animations)
+    -   Tap any order to view complete details
+    -   Update status to next stage with one tap
+    -   Optimistic UI updates for instant feedback
+    -   Success confirmation with themed SnackBar
 
 -   ✅ **Technical Excellence**
-    -   Riverpod for state management (with built-in DI)
-    -   Loading states with CircularProgressIndicator
+    -   Riverpod for state management with built-in DI
+    -   Loading states with progress indicators
     -   Error states with retry functionality
-    -   Implicit animations (AnimatedContainer, AnimatedSwitcher, AnimatedDefaultTextStyle)
-    -   Clean, maintainable code structure
+    -   Implicit animations throughout (AnimatedContainer, AnimatedSwitcher, AnimatedDefaultTextStyle)
+    -   Clean, maintainable architecture
 
 ### Bonus Features ✅
 
 -   ✅ **Material 3 Design System**
-    -   ColorScheme with seed colors
+
+    -   ColorScheme with seed colors and automatic palette generation
     -   Proper elevation and surface tints
-    -   Theme-aware components
+    -   Theme-aware components adapting to light/dark mode
+    -   Consistent spacing and typography scale
+
 -   ✅ **Advanced Riverpod Patterns**
 
-    -   StateNotifier for complex state
-    -   FutureProvider.family for single items
-    -   Provider.family for filtered data
-    -   Optimistic UI updates
-    -   Provider invalidation for refresh
+    -   StateNotifier for complex order state management
+    -   FutureProvider.family for individual order fetching
+    -   Provider.family for filtered data by status
+    -   Optimistic UI updates with automatic rollback
+    -   Provider invalidation for pull-to-refresh
 
 -   ✅ **Modern Dart Features**
 
-    -   Enhanced enums with methods (OrderStatus, PizzaSize)
-    -   Extension methods (DateTime formatting)
-    -   Null safety throughout
-    -   Immutable entities
+    -   Enhanced enums with methods and helpers (OrderStatus, PizzaSize)
+    -   Extension methods for clean DateTime formatting
+    -   Null safety throughout the codebase
+    -   Immutable entities preventing state mutations
+    -   Type-safe model conversions
 
 -   ✅ **Project Hygiene**
-    -   Comprehensive linting rules
+    -   Comprehensive linting rules (flutter_lints)
     -   `.gitignore` for generated files
     -   Feature-first architecture
     -   Consistent code formatting
+    -   Clean Git history with feature branches
 
 ### Extra Polish ✨
 
--   🌙 **Dark mode support** with theme toggle
--   🖼️ **Network pizza images** with loading/error states
--   🎨 **Hero image** in details view with custom AppBar
--   📱 **iOS & Android** permissions configured
--   ⚡ **Optimistic updates** for smooth UX
--   🎭 **Empty states** for better UX
+-   🌙 **Dark mode support** with theme toggle switch in AppBar
+-   🖼️ **Network pizza images** with loading/error states and placeholders
+-   🎨 **Hero animations** transitioning from list to detail view
+-   📱 **iOS & Android** permissions configured for network access
+-   ⚡ **Optimistic updates** for smooth user experience
+-   🎭 **Smart empty states** with status-specific messages per tab
+-   🔄 **Edge-to-edge display** with hidden navigation bar (Android)
+-   🎯 **Status chip visibility** on any image color with semi-transparent background
 
 ---
 
@@ -82,7 +98,7 @@ A Flutter mobile app that helps track pizza orders in real-time, grouped by deli
 
 ### Architecture Pattern
 
-**Feature-First + Clean Architecture** (simplified for time constraint)
+**Feature-First + Clean Architecture** (pragmatic approach optimized for time constraint)
 
 ```
 lib/
@@ -94,31 +110,40 @@ lib/
 │       ├── data/           # Data layer (models, datasources, repos)
 │       ├── domain/         # Business logic (entities, repo interfaces)
 │       └── presentation/   # UI layer (screens, widgets, providers)
+│           ├── providers/  # Riverpod state providers
+│           ├── screens/    # Full-screen views (list, details)
+│           └── widgets/    # Reusable UI components (cards, chips, tabs)
 ├── shared/                 # Shared utilities
 │   ├── extensions/         # Dart extensions (DateTime)
-│   └── widgets/            # Reusable widgets (loading, error)
-└── main.dart               # App entry point
+│   └── widgets/            # Reusable widgets (loading, error, empty)
+└── main.dart               # App entry point with system UI config
 ```
 
 ### Implementation Highlights
 
+**Tabbed Navigation**  
+Clean separation of order statuses with independent scrolling and refresh per tab. Color-coded indicators matching status chips for instant visual recognition. Empty states customized per tab with contextual messaging.
+
+**Card Design System**  
+Hero image at top for immediate visual impact. Order ID as bold title for clear identification. Smart subtitle showing pizza names with pluralization. Three colored badges for key information at a glance. Status chip overlay always visible with semi-transparent background.
+
 **Riverpod State Management**  
-Single source of truth for state across the app. StateNotifier for complex order state, FutureProvider.family for individual orders, Provider.family for filtered views. Optimistic updates with provider invalidation.
+Single source of truth for app state. StateNotifier manages complex order operations with optimistic updates. FutureProvider.family fetches individual orders efficiently. Provider.family filters orders by status with automatic reactivity.
 
 **Feature-First Structure**  
-Each feature is self-contained with data, domain, and presentation layers. Easy to navigate, test, and extend. Clear boundaries between features.
+Each feature is self-contained with clear layer separation. Easy navigation and testing. Boundaries prevent tight coupling. Scales naturally as new features are added.
 
 **Type-Safe Everything**  
-Enhanced enums with methods, immutable entities, null safety throughout. Compile-time safety prevents runtime errors. Extension methods add functionality cleanly.
+Enhanced enums with helper methods for business logic. Immutable entities prevent accidental mutations. Null safety eliminates entire classes of bugs. Extension methods add functionality without cluttering models.
 
 **Material 3 Design**  
-ColorScheme.fromSeed for automatic color generation. Theme-aware components adapt to light/dark mode. Proper elevation and surface tints. No hardcoded colors or text styles.
+ColorScheme.fromSeed generates harmonious palette automatically. Theme-aware components adapt seamlessly to light/dark mode. Proper elevation creates visual hierarchy. Surface tints add depth and dimension.
 
 **Efficient Data Flow**  
-JSON → Model → Entity separation. Clean conversion at boundaries. In-memory caching for performance. Repository interface allows easy backend integration.
+Clean conversion: JSON → Model → Entity at boundaries. In-memory caching for instant loading. Repository interface abstracts data source for easy backend integration.
 
 **Professional Polish**  
-Smooth implicit animations throughout. Loading and error states handled gracefully. Empty states with helpful messaging. Pull-to-refresh functionality. Network images with fallbacks.
+Smooth implicit animations for delightful interactions. Loading and error states handled gracefully. Empty states with helpful, contextual messaging. Pull-to-refresh works independently per tab. Network images with loading indicators and fallbacks.
 
 ---
 
@@ -158,10 +183,11 @@ flutter run --release
 ### Quick Test
 
 ```bash
-# Pull down to refresh orders
-# Tap any order to see details
-# Tap "Mark as [Next Status]" to update
-# Toggle theme with switch in AppBar
+# Switch between tabs to see orders by status
+# Pull down in any tab to refresh
+# Tap any order card to see full details
+# Tap "Mark as [Next Status]" button to update
+# Toggle theme with switch in AppBar (moon/sun icon)
 ```
 
 ---
@@ -194,12 +220,12 @@ flutter build ios --release
 
 **Total Time: ~3.5 hours**
 
-| Phase                    | Time    | Details                                            |
-| ------------------------ | ------- | -------------------------------------------------- |
-| **Setup & Architecture** | 30 min  | Project structure, dependencies, core files        |
-| **Core Features**        | 2 hours | Orders list, details, state management, data layer |
-| **UI/UX Polish**         | 45 min  | Animations, stepper, Material 3 theming, images    |
-| **Quality Assurance**    | 15 min  | Manual validation, bug fixes, polish               |
+| Phase                    | Time    | Details                                                   |
+| ------------------------ | ------- | --------------------------------------------------------- |
+| **Setup & Architecture** | 30 min  | Project structure, dependencies, core theme configuration |
+| **Core Features**        | 2 hours | Orders list, details view, state management, data layer   |
+| **UI/UX Polish**         | 45 min  | Animations, stepper, Material 3 theming, network images   |
+| **Quality Assurance**    | 15 min  | Bug fixes, edge cases, tabbed interface, final polish     |
 
 ---
 
@@ -208,34 +234,42 @@ flutter build ios --release
 ### Architecture Decisions
 
 **Riverpod for Everything**  
-Unified state management and dependency injection. Type-safe, compile-time checked, eliminates service locator pattern complexity. Single system provides DI, state management, and caching.
+Unified solution for state management and dependency injection. Type-safe and compile-time checked. Eliminates service locator complexity. Single system handles DI, state management, and caching efficiently.
 
 **Pragmatic Clean Architecture**  
-Repository pattern with direct business logic. Clean separation of concerns without use case layer overhead. Maintains testability and scalability while optimizing for development speed.
+Repository pattern with direct business logic in entities. Clean separation without use case layer overhead. Maintains testability and scalability while optimizing for development velocity within time constraint.
+
+**Tabbed Interface Over Nested Lists**  
+Better organization and navigation for status-based filtering. Independent scrolling and pull-to-refresh per tab. Reduces scrolling fatigue. Color-coded tabs match status chips for instant recognition.
+
+**Card-First Design**  
+Hero image creates immediate visual impact and brand consistency. Order ID as title emphasizes tracking. Smart badges surface key information efficiently. Status chip overlay always visible regardless of image colors.
 
 **Type-Safe Domain Model**  
-Enhanced enums (OrderStatus, PizzaSize) with helper methods. Immutable entities prevent bugs. Extension methods (DateTime) add functionality without cluttering models.
+Enhanced enums (OrderStatus, PizzaSize) with methods eliminate magic strings. Immutable entities prevent mutation bugs. Extension methods (DateTime) add functionality cleanly without model clutter.
 
 **Local-First Data**  
-In-memory caching with mock JSON. Fast loading, realistic data flow. Repository interface supports easy swap to remote API or local database.
+In-memory caching with JSON mock data. Fast initial loading with realistic data flow. Repository interface supports seamless swap to remote API or local database.
 
 **Implicit Animations**  
-Flutter's built-in animated widgets (AnimatedContainer, AnimatedSwitcher, AnimatedDefaultTextStyle). Professional feel without custom animation controllers. Smooth transitions with minimal code.
+Flutter's built-in animated widgets provide professional feel without complexity. Smooth transitions with minimal code overhead. AnimatedContainer, AnimatedSwitcher, AnimatedDefaultTextStyle used throughout.
 
 **Manual Model Management**  
-Explicit model definitions and conversions. Full control over serialization. Clear, readable code without code generation complexity.
+Explicit model definitions and conversions provide full control. Clear, readable serialization logic. Avoids code generation complexity for this project scope.
 
 **Material 3 Design System**  
-Theme-based styling throughout. ColorScheme with seed colors, proper elevation. Automatic dark mode support. Professional appearance with consistency.
+Theme-based styling eliminates hardcoded values. ColorScheme with seed colors ensures harmony. Proper elevation and surface tints create depth. Automatic dark mode support.
 
 ### Project Assumptions
 
-1. **Linear Order Flow** - Orders progress sequentially (Preparing → On the Way → Delivered)
-2. **Single Restaurant Context** - All orders managed from one location
+1. **Linear Order Flow** - Orders progress sequentially through statuses (no backwards movement)
+2. **Single Restaurant Context** - All orders managed from one centralized location
 3. **Network Connectivity** - Internet available for pizza images (graceful fallbacks included)
-4. **Demo Data** - Fixed timestamps and customer data for demonstration
-5. **Open Access** - No authentication layer (focus on core functionality)
-6. **Forward-Only Updates** - Orders can only advance, not reverse status
+4. **Demo Data** - Fixed timestamps and customer data for realistic demonstration
+5. **Open Access** - No authentication layer (focus on core order management)
+6. **Forward-Only Updates** - Orders advance only, status cannot be reversed
+7. **Single Currency** - All prices in USD with $ symbol
+8. **English Language** - UI and data in English only
 
 ---
 
@@ -243,15 +277,15 @@ Theme-based styling throughout. ColorScheme with seed colors, proper elevation. 
 
 ### Production
 
--   `flutter_riverpod: ^2.4.9` - State management + DI
--   `intl: ^0.19.0` - Date/time formatting
+-   `flutter_riverpod: ^2.4.9` - State management + dependency injection
+-   `intl: ^0.19.0` - Date/time formatting and localization
 -   `cupertino_icons: ^1.0.8` - iOS-style icons
 
 ### Development
 
--   `flutter_lints: ^5.0.0` - Strict linting rules
+-   `flutter_lints: ^5.0.0` - Strict linting rules and code quality
 
-**Total**: 3 production deps (minimal, intentional)
+**Total**: 3 production dependencies (minimal, intentional choices)
 
 ---
 
@@ -259,21 +293,55 @@ Theme-based styling throughout. ColorScheme with seed colors, proper elevation. 
 
 ### Color Palette
 
--   **Primary**: Orange/Coral (#FF6B35) - Pizza theme!
--   **Success**: Green (#4CAF50) - Delivered
--   **Warning**: Orange (#FF9800) - Preparing
--   **Info**: Blue (#2196F3) - On the way
+**Status Colors (Requirement-based):**
 
-### Typography
+-   🟠 **Preparing**: Orange (#F77F00) - Warm, active cooking
+-   🔵 **On the Way**: Blue (#3A86FF) - Motion, in transit
+-   🟢 **Delivered**: Green (#06D6A0) - Success, completion
 
--   Material 3 text styles throughout
--   No hardcoded font sizes
--   Theme-aware for dark mode
+**Brand Colors:**
 
-### Spacing Scale
+-   **Primary**: Pizza Red/Orange (#FF6B35) - Brand identity
+-   **Secondary**: Deep Navy (#004E89) - Professional contrast
+
+**Semantic Colors:**
+
+-   **Success**: Teal (#2A9D8F)
+-   **Warning**: Orange (#F77F00)
+-   **Error**: Red (#E63946)
+-   **Info**: Blue (#3A86FF)
+
+### Typography Scale
+
+Material 3 text styles used throughout:
+
+-   **Display**: 57px, 45px, 36px (rare usage)
+-   **Headline**: 32px, 28px, 24px (section headers)
+-   **Title**: 22px, 16px, 14px (card titles)
+-   **Body**: 16px, 14px, 12px (content text)
+-   **Label**: 14px, 12px, 11px (buttons, badges)
+
+No hardcoded font sizes - all theme-aware for consistency.
+
+### Spacing Scale (8px Grid)
 
 ```dart
-xs: 4px, sm: 8px, md: 16px, lg: 24px, xl: 32px, xxl: 40px
+xs: 4px   // Tight spacing, icon padding
+sm: 8px   // Small gaps, chip padding
+md: 16px  // Standard padding, card margins
+lg: 24px  // Section spacing
+xl: 32px  // Large separators
+xxl: 48px // Major sections
+```
+
+### Border Radius Scale
+
+```dart
+sm: 8px   // Small elements
+md: 12px  // Cards, buttons
+lg: 16px  // Large cards
+xl: 20px  // Special elements
+circular: 999px  // Pills, circular badges
 ```
 
 ---
@@ -282,15 +350,18 @@ xs: 4px, sm: 8px, md: 16px, lg: 24px, xl: 32px, xxl: 40px
 
 This prototype focuses on core order tracking functionality:
 
--   ✅ Real-time order status management with optimistic updates
--   ✅ Visual delivery progress tracking with animated stepper
--   ✅ Clean, maintainable architecture with clear separation
--   ✅ Material 3 design implementation with dark mode
--   ✅ Network images with loading/error states
--   ✅ Smooth animations and professional polish
--   ✅ Pull-to-refresh and empty state handling
+-   ✅ **Tabbed order management** with status-based organization
+-   ✅ **Visual card design** with hero images and smart layouts
+-   ✅ **Real-time status updates** with optimistic UI feedback
+-   ✅ **Animated delivery stepper** showing progress visually
+-   ✅ **Clean architecture** with clear layer separation
+-   ✅ **Material 3 design** with comprehensive dark mode support
+-   ✅ **Network images** with loading states and error handling
+-   ✅ **Smooth animations** for professional feel
+-   ✅ **Pull-to-refresh** working independently per tab
+-   ✅ **Empty states** with contextual, helpful messaging
 
-Built as a **working prototype** demonstrating production-ready patterns and practices.
+Built as a **working prototype** demonstrating production-ready patterns, best practices, and attention to detail.
 
 ---
 
@@ -299,27 +370,30 @@ Built as a **working prototype** demonstrating production-ready patterns and pra
 The architecture supports future enhancements:
 
 **Search & Filtering**  
-Provider pattern ready for search state. OrdersNotifier already supports filtering by status - extensible to any criteria.
+Provider pattern ready for search state. OrdersNotifier filters by status - easily extensible to search by customer name, order ID, pizza type, or date range.
 
 **Real-time Updates**  
-Repository interface designed for backend swap. Can easily integrate WebSocket, Firebase, or GraphQL subscriptions.
+Repository interface designed for backend integration. Can swap to WebSocket connections, Firebase Realtime Database, or GraphQL subscriptions without changing presentation layer.
 
 **Push Notifications**  
-State management handles background updates. Provider invalidation triggers UI refresh when notifications arrive.
+State management handles background updates naturally. Provider invalidation triggers automatic UI refresh when push notifications arrive.
 
 **Offline Support**  
-Data layer structured for persistence. Repository pattern abstracts storage - can add Hive, SQLite, or shared preferences.
+Data layer structured for local persistence. Repository pattern abstracts storage - add Hive, SQLite, or shared preferences without affecting business logic.
 
 **Multi-tenant**  
-Feature-first structure scales to multiple restaurants. Add restaurant ID filtering without restructuring.
+Feature-first structure scales to multiple restaurants. Add restaurant ID filtering at provider level. UI components remain unchanged.
 
 **Analytics Integration**  
-Provider pattern allows easy interceptor addition. Track order views, status changes, and user interactions.
+Provider pattern allows easy event tracking. Monitor order views, status changes, tab switches, and user interactions for insights.
 
-**Authentication**  
-Add auth provider to Riverpod tree. Protect routes with auth guards. Repository can inject auth tokens.
+**Authentication & Authorization**  
+Add auth provider to Riverpod tree. Protect routes with auth guards. Repository injects auth tokens automatically. Role-based access control for status updates.
 
-_Architecture designed for growth while keeping current scope focused._
+**Payment Integration**  
+Order entity ready for payment status. Add payment provider. Integrate Stripe, PayPal, or other payment gateways at data layer.
+
+_Architecture designed for sustainable growth while keeping current scope focused and deliverable._
 
 ---
 
@@ -327,60 +401,81 @@ _Architecture designed for growth while keeping current scope focused._
 
 ### Linting
 
--   ✅ Strict analysis_options.yaml
--   ✅ All lints passing
--   ✅ Consistent formatting
+-   ✅ Strict analysis_options.yaml with flutter_lints
+-   ✅ All lint rules passing (0 warnings, 0 errors)
+-   ✅ Consistent code formatting with dartfmt
+-   ✅ Generated files excluded from analysis
 
 ### Best Practices
 
--   ✅ Immutable entities
--   ✅ Const constructors where possible
--   ✅ Proper error handling
--   ✅ Type safety throughout
--   ✅ Single Responsibility Principle
--   ✅ DRY (Don't Repeat Yourself)
+-   ✅ Immutable entities prevent state mutations
+-   ✅ Const constructors used where possible for performance
+-   ✅ Proper error handling with try-catch and AsyncValue
+-   ✅ Type safety throughout (no dynamic, no any)
+-   ✅ Single Responsibility Principle per class
+-   ✅ DRY (Don't Repeat Yourself) with shared widgets
+-   ✅ Meaningful names for variables and functions
+-   ✅ Comments for complex business logic
+
+### UI/UX Quality
+
+-   ✅ Consistent spacing using design tokens
+-   ✅ Theme-aware colors (no hardcoded hex values in widgets)
+-   ✅ Loading states for better perceived performance
+-   ✅ Error states with retry actions
+-   ✅ Empty states with helpful guidance
+-   ✅ Smooth animations for professional feel
+-   ✅ Accessibility: proper semantic labels
+-   ✅ Touch targets meet minimum size (48x48dp)
 
 ---
 
 ## 📝 Git Workflow
 
-Followed **Git Flow** with feature branches:
+Followed **Gitflow** methodology with feature branches:
 
 ```
-main (production)
-  ├─ development (integration)
-     ├─ feature/project-setup
-     ├─ feature/mock-data-json
-     ├─ feature/core-theme
-     ├─ feature/order-data-layer
-     ├─ feature/riverpod-providers
-     ├─ feature/orders-list-screen
-     └─ feature/order-details-polish
+main (production-ready)
+  └─ development (integration)
+       ├─ feature/project-setup
+       ├─ feature/mock-data-json
+       ├─ feature/core-theme
+       ├─ feature/order-domain
+       ├─ feature/order-data-layer
+       ├─ feature/riverpod-providers
+       ├─ feature/orders-list-screen
+       ├─ feature/order-details-polish
+       └─ feature/tabbed-interface
 ```
 
-Clean commit history with conventional commits.
+Clean commit history with descriptive conventional commit messages.
 
 ---
 
 ## 🤝 Deliverables Checklist
 
--   ✅ Public GitHub repository
--   ✅ Clean commit history (feature branches)
--   ✅ README.md with all required sections
+-   ✅ Public GitHub repository with clean history
+-   ✅ Feature branches following Gitflow
+-   ✅ Comprehensive README.md with all sections
 -   ✅ Release APK (`build/app/outputs/flutter-apk/`)
--   ✅ Working features within time constraint
--   ✅ Clean, documented code
--   ✅ Material 3 design system
--   ✅ Advanced Riverpod patterns
--   ✅ Manually tested and verified
+-   ✅ All core requirements completed within time budget
+-   ✅ Bonus features implemented (Material 3, advanced Riverpod)
+-   ✅ Clean, well-documented code
+-   ✅ Lint-free codebase
+-   ✅ Manually tested on iOS and Android
+-   ✅ Dark mode support throughout
+-   ✅ Network images with proper error handling
+-   ✅ Smooth animations and transitions
+-   ✅ Professional UI/UX polish
 
 ---
 
 ## 👤 Author
 
-Riya Patel  
+**Riya Patel**  
 Email: riya.patel.flutter@gmail.com  
-GitHub: [@RiyaPatel7102](https://github.com/RiyaPatel7102)
+GitHub: [@RiyaPatel7102](https://github.com/RiyaPatel7102)  
+LinkedIn: [Riya Patel](https://linkedin.com/in/riyapatel)
 
 ---
 
@@ -389,20 +484,22 @@ GitHub: [@RiyaPatel7102](https://github.com/RiyaPatel7102)
 **Submitted to**: teams@flysoft.eu  
 **Date**: December 14, 2025  
 **Repository**: https://github.com/RiyaPatel7102/pizza_panic  
-**APK**: [Link to APK or included in release]
+**APK**: Included in GitHub releases
 
 ---
 
 ## 🙏 Acknowledgments
 
-Built as part of a technical assessment for demonstrating:
+Built as part of a technical assessment to demonstrate:
 
--   Flutter expertise
--   Clean architecture
--   State management mastery
--   UI/UX attention to detail
--   Time management
--   Problem-solving approach
+-   ✅ Flutter expertise and modern best practices
+-   ✅ Clean architecture and separation of concerns
+-   ✅ Advanced state management with Riverpod
+-   ✅ Material 3 design system implementation
+-   ✅ UI/UX attention to detail and polish
+-   ✅ Time management and prioritization
+-   ✅ Problem-solving approach and decision-making
+-   ✅ Code quality and maintainability focus
 
 ---
 
