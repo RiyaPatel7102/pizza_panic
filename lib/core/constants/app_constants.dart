@@ -38,7 +38,7 @@ class AppConstants {
   static const List<String> statusStepperLabels = [
     'Order Placed',
     'Preparing',
-    'Out for Delivery',
+    'On the Way',
     'Delivered',
   ];
 

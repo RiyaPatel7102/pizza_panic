@@ -10,6 +10,7 @@ class PizzaModel {
     required this.quantity,
     required this.price,
     required this.toppings,
+    this.imageUrl,
   });
 
   final String name;
@@ -17,6 +18,7 @@ class PizzaModel {
   final int quantity;
   final double price;
   final List<String> toppings;
+  final String? imageUrl;
 
   /// Create from JSON
   factory PizzaModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +29,7 @@ class PizzaModel {
       price: (json['price'] as num).toDouble(),
       toppings:
           (json['toppings'] as List<dynamic>).map((e) => e as String).toList(),
+      imageUrl: json['imageUrl'] as String?,
     );
   }
 
@@ -38,6 +41,7 @@ class PizzaModel {
       'quantity': quantity,
       'price': price,
       'toppings': toppings,
+      'imageUrl': imageUrl,
     };
   }
 
@@ -50,6 +54,7 @@ class PizzaModel {
       quantity: quantity,
       price: price,
       toppings: toppings,
+      imageUrl: imageUrl,
     );
   }
 
@@ -62,6 +67,7 @@ class PizzaModel {
       quantity: pizza.quantity,
       price: pizza.price,
       toppings: pizza.toppings,
+      imageUrl: pizza.imageUrl,
     );
   }
 }
